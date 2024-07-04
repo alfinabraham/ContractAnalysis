@@ -1,0 +1,144 @@
+simpleArgs: &simple-args
+  initialWeight: 100
+  expDate: 100000
+  numberOfAccounts: &number-of-products 400
+
+test:
+  name: auctionsale
+  description: >-
+    This is an example benchmark for Caliper, to test the backend DLT's
+    performance with product registration & querying transactions.
+  workers:
+    number: 1
+  rounds:
+    - label: registerprod
+      description: >-
+        Test description for register a farm product through the deployed contract.
+      txNumber: *number-of-products
+      rateControl:
+        type: fixed-rate
+        opts:
+          tps: 50
+      workload:
+        module: benchmarks/scenario/AucAnalysis/registerprod.js
+        arguments: *simple-args
+    - label: certifyprod
+      description: Test description for certify product.
+      txNumber: *number-of-products
+      rateControl:
+        type: fixed-rate
+        opts:
+          tps: 50
+      workload:
+        module: benchmarks/scenario/AucAnalysis/certifyprod.js
+        arguments: *simple-args
+    - label: initialAmount
+      description: Test description for initial amount setting.
+      txNumber: *number-of-products
+      rateControl:
+        type: fixed-rate
+        opts:
+          tps: 50
+      workload:
+        module: benchmarks/scenario/AucAnalysis/initialAmount.js
+        arguments: *simple-args
+    - label: startAuction
+      description: Test description for auction setting of the product.
+      txNumber: *number-of-products
+      rateControl:
+        type: fixed-rate
+        opts:
+          tps: 50
+      workload:
+        module: benchmarks/scenario/AucAnalysis/startAuction.js
+        arguments: *simple-args
+    - label: placeBid
+      description: Test description for bidding product.
+      txNumber: *number-of-products
+      rateControl:
+        type: fixed-rate
+        opts:
+          tps: 50
+      workload:
+        module: benchmarks/scenario/AucAnalysis/placeBid.js
+        arguments: *simple-args
+    - label: announceWinner
+      description: Test description for winner of product auction.
+      txNumber: *number-of-products
+      rateControl:
+        type: fixed-rate
+        opts:
+          tps: 50
+      workload:
+        module: benchmarks/scenario/AucAnalysis/announceWinner.js
+        arguments: *simple-args
+    - label: transferPayment
+      description: Test description for payment of product.
+      txNumber: *number-of-products
+      rateControl:
+        type: fixed-rate
+        opts:
+          tps: 50
+      workload:
+        module: benchmarks/scenario/AucAnalysis/transferPayment.js
+        arguments: *simple-args
+    - label: transferOwnership
+      description: Test description for trasnfer product ownership.
+      txNumber: *number-of-products
+      rateControl:
+        type: fixed-rate
+        opts:
+          tps: 50
+      workload:
+        module: benchmarks/scenario/AucAnalysis/transferOwnership.js
+        arguments: *simple-args
+    - label: directSale
+      description: Test description for direct sale.
+      txNumber: *number-of-products
+      rateControl:
+        type: fixed-rate
+        opts:
+          tps: 50
+      workload:
+        module: benchmarks/scenario/AucAnalysis/directSale.js
+        arguments: *simple-args
+    - label: BuyProduct
+      description: Test description for direct sale of product.
+      txNumber: *number-of-products
+      rateControl:
+        type: fixed-rate
+        opts:
+          tps: 50
+      workload:
+        module: benchmarks/scenario/AucAnalysis/BuyProduct.js
+        arguments: *simple-args
+    - label: selectDelivery
+      description: Test description for delivery selection.
+      txNumber: *number-of-products
+      rateControl:
+        type: fixed-rate
+        opts:
+          tps: 50
+      workload:
+        module: benchmarks/scenario/AucAnalysis/selectDelivery.js
+        arguments: *simple-args
+    - label: receiveFromOwner
+      description: Test description for receive form owner.
+      txNumber: *number-of-products
+      rateControl:
+        type: fixed-rate
+        opts:
+          tps: 50
+      workload:
+        module: benchmarks/scenario/AucAnalysis/receiveFromOwner.js
+        arguments: *simple-args
+    - label: itemDelivered
+      description: Test description for receive form owner.
+      txNumber: *number-of-products
+      rateControl:
+        type: fixed-rate
+        opts:
+          tps: 50
+      workload:
+        module: benchmarks/scenario/AucAnalysis/itemDelivered.js
+        arguments: *simple-args
